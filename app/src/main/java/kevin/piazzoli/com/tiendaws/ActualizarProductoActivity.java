@@ -1,7 +1,8 @@
 package kevin.piazzoli.com.tiendaws;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,38 +19,36 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class ActualizarProductoActivity extends AppCompatActivity {
 
     private EditText edtCodigo;
     private EditText edtDescripcion;
     private EditText edtPrecio;
     private EditText edtCategoria;
 
-    private Button btnGuardar;
+    private Button btnActualizar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        AndroidNetworking.initialize(getApplicationContext());
-
+        setContentView(R.layout.activity_actualizar_producto);
         edtCodigo = findViewById(R.id.edtCodigo);
         edtDescripcion = findViewById(R.id.edtDescripcion);
         edtPrecio = findViewById(R.id.edtPrecio);
         edtCategoria = findViewById(R.id.edtCategoria);
 
-        btnGuardar = findViewById(R.id.btnGuardar);
+        btnActualizar = findViewById(R.id.btnActualizar);
 
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarProducto();
+                actualizarProducto();
             }
         });
 
     }
 
-    private void guardarProducto(){
+    private void actualizarProducto(){
         if(isValidarCampos()){
 
             String codigo = edtCodigo.getText().toString();
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             datos.put("categoria",categoria);
             JSONObject jsonData = new JSONObject(datos);
 
-            AndroidNetworking.post(Constantes.URL_INSERTAR_PRODUCTO)
+            AndroidNetworking.post(Constantes.URL_ACTUALIZAR_PRODUCTO)
                     .addJSONObjectBody(jsonData)
                     .setPriority(Priority.MEDIUM)
                     .build()
@@ -74,26 +73,24 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 String estado = response.getString("estado");
                                 String error = response.getString("error");
-                                Toast.makeText(MainActivity.this, estado, Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(MainActivity.this, "Error: "+error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActualizarProductoActivity.this, estado, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ActualizarProductoActivity.this, "Error: "+error, Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
-                                Toast.makeText(MainActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActualizarProductoActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onError(ANError anError) {
-                            Toast.makeText(MainActivity.this, "Error: "+anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActualizarProductoActivity.this, "Error: "+anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
                         }
                     });
+
         }else{
-            Toast.makeText(this, "No se puede insertar un producto si existen campos vacios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Existen campos vacios no puedes actualizar.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //devuelve verdadero si es que no hay campos vacios
-    //devuelve falso si es que hay como minimo un campo vacio
-    //"     01  " => "01"
     private boolean isValidarCampos(){
         return !edtCodigo.getText().toString().trim().isEmpty() &&
                 !edtDescripcion.getText().toString().trim().isEmpty() &&
