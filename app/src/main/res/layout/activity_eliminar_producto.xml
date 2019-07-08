@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
         android:gravity="center"
-        android:text="Actualizar Producto"
+        android:text="Eliminar Producto"
         android:textColor="#000"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -28,33 +28,9 @@
         android:hint="Codigo"
         android:inputType="number" />
 
-    <EditText
-        android:id="@+id/edtDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Descripcion"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edtPrecio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Precio"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:id="@+id/edtCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Categoria"
-        android:inputType="textPersonName" />
-
     <Button
-        android:id="@+id/btnActualizar"
+        android:id="@+id/btnEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Actualizar" />
+        android:text="Eliminar" />
 </LinearLayout>

@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class GuardarProductoActivity extends AppCompatActivity {
 
     private EditText edtCodigo;
     private EditText edtDescripcion;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_guardar_producto);
         AndroidNetworking.initialize(getApplicationContext());
 
         edtCodigo = findViewById(R.id.edtCodigo);
@@ -74,16 +74,16 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 String estado = response.getString("estado");
                                 String error = response.getString("error");
-                                Toast.makeText(MainActivity.this, estado, Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(MainActivity.this, "Error: "+error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(GuardarProductoActivity.this, estado, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(GuardarProductoActivity.this, "Error: "+error, Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
-                                Toast.makeText(MainActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(GuardarProductoActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onError(ANError anError) {
-                            Toast.makeText(MainActivity.this, "Error: "+anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GuardarProductoActivity.this, "Error: "+anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }else{

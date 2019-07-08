@@ -38,16 +38,40 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnBorrarProducto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irActivityEliminarProducto();
+            }
+        });
+
+        btnListarProductos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                irActivityListarProducto();
+            }
+        });
+
     }
 
 
     private void irActivityInsertarProducto(){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, GuardarProductoActivity.class);
         startActivity(intent);
     }
 
     private void irActivityActualizarProducto(){
         Intent intent = new Intent(this,ActualizarProductoActivity.class);
+        startActivity(intent);
+    }
+
+    private void irActivityEliminarProducto(){
+        Intent intent = new Intent(this,EliminarProductoActivity.class);
+        startActivity(intent);
+    }
+
+    private void irActivityListarProducto(){
+        Intent intent = new Intent(this,ListarProductosActivity.class);
         startActivity(intent);
     }
 

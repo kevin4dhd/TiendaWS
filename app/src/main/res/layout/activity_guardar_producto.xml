@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10sp"
-    tools:context=".MainActivity">
+    tools:context=".GuardarProductoActivity">
 
     <TextView
         android:id="@+id/textView"
