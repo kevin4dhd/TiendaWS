@@ -26,6 +26,7 @@ public class ListarProductosActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_productos);
+        AndroidNetworking.initialize(getApplicationContext());
 
         lvProductos = findViewById(R.id.lvProductos);
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);

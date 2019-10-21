@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">flaxbin.com</domain>
+        <domain includeSubdomains="true">peaceful-inlet-91806.herokuapp.com</domain>
     </domain-config>
 </network-security-config>
